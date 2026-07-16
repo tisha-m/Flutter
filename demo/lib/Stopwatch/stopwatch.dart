@@ -3,49 +3,102 @@ import 'dart:async';
 
 class StopWatchExample extends StatefulWidget {
   const StopWatchExample({super.key});
-
   @override
   State<StopWatchExample> createState() => _StopWatchExampleState();
 }
 
 class _StopWatchExampleState extends State<StopWatchExample> {
-  int seconds = 0;
+  //int seconds = 0
+  int milliseconds = 0;
+  final laps = <int>[];
   late Timer timer;
   bool isRunning = false;
+
+  void _lap() {
+    setState(() {
+      laps.add(milliseconds);
+      milliseconds = 0;
+    });
+    print(laps);
+  }
+
+    void _clear() {
+    setState(() {
+      laps.clear();
+      milliseconds = 0;
+    });
+  }
+
+  Widget buildCounter(BuildContext context) {
+    return Container(
+      color: Theme.of(context).primaryColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Lap ${laps.length + 1}',
+            style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.white),
+        ),
+        Text(
+          _millisToSecond(milliseconds),
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white),
+        )
+      ],
+    ));
+  }
 
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(const Duration(seconds: 1), _onTick);
     }
 
   @override
   void dispose() {
-    timer.cancel();
     super.dispose();
   }
 
     void _onTick(Timer timer) {
         setState(() {
           if(isRunning){
-            seconds++;
+            //seconds++;
+            milliseconds += 100;
           }
       });
   }
 
   void _startTimer() {
+    timer = Timer.periodic(const Duration(milliseconds: 100), _onTick);
     setState(() {
+      //seconds = 0;
+      milliseconds = 0;
       isRunning = true;
     });
   }
 
   void _stopTimer() {
+    timer.cancel();
     setState(() {
       isRunning = false;
     });
   }
 
-  String _secondToText() => seconds == 1 ? '1 second' : '$seconds seconds';
+  // void _pauseTimer(){
+  //   setState(() {
+  //     isRunning = false;
+  //   });
+  // }
+
+  // void _resumeTimer() {
+  //   setState(() {
+  //     isRunning = true;
+  //   });
+  // }
+
+  // String _secondsToText() => seconds == 1 ? 'second' : 'seconds';
+  String _millisToSecond(millis) {
+    final seconds = (millis / 1000);
+    return '$seconds seconds';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +111,7 @@ class _StopWatchExampleState extends State<StopWatchExample> {
         children: [
           Center(
             child: Text(
-              _secondToText(),
+              _millisToSecond(milliseconds),
               style: const TextStyle(fontSize: 30),
             ),
           ),
@@ -74,6 +127,26 @@ class _StopWatchExampleState extends State<StopWatchExample> {
                 child: const Text('Start'),
               ),
               const SizedBox(width: 20),
+              
+              // ElevatedButton(
+              //   onPressed: isRunning ? _pauseTimer : null,
+              //   style: ButtonStyle(
+              //     backgroundColor: WidgetStateProperty.all<Color>(const Color.fromARGB(255, 54, 98, 244)),
+              //     foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+              //   ),
+              //   child: const Text('Pause'),
+              // ),
+              // const SizedBox(width: 20),
+              
+              // ElevatedButton(
+              //   onPressed: isRunning ? null : _resumeTimer,
+              //   style: ButtonStyle(
+              //     backgroundColor: WidgetStateProperty.all<Color>(const Color.fromARGB(255, 244, 152, 54)),
+              //     foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+              //   ),
+              //   child: const Text('Resume'),
+              // ),
+              // const SizedBox(width: 20),
 
               ElevatedButton(
                 onPressed: _stopTimer,
@@ -82,6 +155,26 @@ class _StopWatchExampleState extends State<StopWatchExample> {
                   foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
                 ),
                 child: const Text('Stop'),
+              ),
+              const SizedBox(width: 20),
+
+              ElevatedButton(
+                onPressed: _lap,
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all<Color>(const Color.fromARGB(255, 244, 181, 54)),
+                  foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                ),
+                child: const Text('Lap'),
+              ),
+              const SizedBox(width: 20),
+              
+              ElevatedButton(
+                onPressed: _clear,
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all<Color>(const Color.fromARGB(255, 54, 124, 244)),
+                  foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                ),
+                child: const Text('Clear'),
               ),
               const SizedBox(width: 20),
             ],
