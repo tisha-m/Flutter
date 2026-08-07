@@ -1,23 +1,39 @@
 import 'package:flutter/material.dart';
-import 'screens/todo_screen.dart';
+import 'screens/splash_screen.dart';
+//import 'screens/todo_screen.dart';
 //import 'screens/counter_screen.dart';
 //import 'color_page.dart';
 
 void main() {
-  runApp(TodoWidget());
+  runApp(CountApp());
 }
-
-class TodoWidget extends StatelessWidget {
-  const TodoWidget({super.key});
+class CountApp extends StatelessWidget {
+  const CountApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TodoScreen(),
+      home: SplashScreen()
     );
   }
 }
+// todo page:
+// void main() {
+//   runApp(TodoWidget());
+// }
+
+// class TodoWidget extends StatelessWidget {
+//   const TodoWidget({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: TodoScreen(),
+//     );
+//   }
+// }
 
 // counter page:
   // @override
