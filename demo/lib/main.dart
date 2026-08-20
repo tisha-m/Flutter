@@ -17,26 +17,67 @@
 // //   }
 // // }
 
+//EXERISE.dart
+// import 'package:flutter/material.dart';
+// import 'exercise.dart';
+
+// void main() {
+//   runApp(const MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       title: 'Student Registration',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//         useMaterial3: true,
+//       ),
+//       home: const RegistrationPage(),
+//     );
+//   }
+// }
+
+//CALCULATOR.dart
+// import 'package:flutter/material.dart';
+// import './Calculator/calculator.dart';
+
+// void main() {
+//   runApp(const CalculatorWidget());
+// }
+
+// class CalculatorWidget extends StatelessWidget {
+//   const CalculatorWidget({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: const Calculator(),
+//     );
+//   }
+// }
+
+//LOGIN.dart
+import 'package:demo/Stopwatch/login.dart';
 import 'package:flutter/material.dart';
-import 'exercise.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const StopwatchRun());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class StopwatchRun extends StatelessWidget {
+  const StopwatchRun({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Student Registration',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        useMaterial3: true,
-      ),
-      home: const RegistrationPage(),
-    );
+      home: LoginScreen(),
+      );
   }
 }
