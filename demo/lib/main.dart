@@ -64,6 +64,7 @@
 
 //LOGIN.dart
 import 'package:demo/Stopwatch/login.dart';
+import 'InputControl/inputtextcontrol.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -77,7 +78,7 @@ class StopwatchRun extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: ControlInput(),
       );
   }
 }
