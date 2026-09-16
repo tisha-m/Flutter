@@ -63,9 +63,14 @@
 // }
 
 //LOGIN.dart
-import 'package:demo/Stopwatch/login.dart';
-import 'InputControl/inputtextcontrol.dart';
+// import 'package:demo/Stopwatch/login.dart';
+// import 'InputControl/inputtextcontrol.dart';
+// import 'package:flutter/material.dart';
+
+//image.dart
 import 'package:flutter/material.dart';
+import 'resources/imagestring.dart';
+import 'controls/imagedisp.dart';
 
 void main() {
   runApp(const StopwatchRun());
@@ -78,7 +83,7 @@ class StopwatchRun extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ControlInput(),
+      home: ImageDisp(),
       );
   }
 }
