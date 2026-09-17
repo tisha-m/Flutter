@@ -68,6 +68,9 @@
 // import 'package:flutter/material.dart';
 
 //image.dart
+import 'package:demo/controls/gridview.dart';
+import 'package:demo/controls/scrollviewimage.dart';
+import 'package:demo/controls/tabview.dart';
 import 'package:flutter/material.dart';
 import 'resources/imagestring.dart';
 import 'controls/imagedisp.dart';
@@ -83,7 +86,7 @@ class StopwatchRun extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ImageDisp(),
+      home: TabExample(),
       );
   }
 }
