@@ -68,13 +68,17 @@
 // import 'package:flutter/material.dart';
 
 //image.dart
-import 'package:demo/controls/gridview.dart';
-import 'package:demo/controls/scrollviewimage.dart';
-import 'package:demo/controls/tabview.dart';
-import 'package:flutter/material.dart';
-import 'resources/imagestring.dart';
-import 'controls/imagedisp.dart';
+// import 'package:demo/controls/gridview.dart';
+// import 'package:demo/controls/scrollviewimage.dart';
+// import 'package:demo/controls/tabview.dart';
+// import 'package:flutter/material.dart';
+// import 'resources/imagestring.dart';
+// import 'controls/imagedisp.dart';
 
+//techfest.dart
+import 'package:flutter/material.dart';
+import 'package:demo/techfest/register.dart';
+import 'package:demo/techfest/tabviewTech.dart';
 void main() {
   runApp(const StopwatchRun());
 }
@@ -86,7 +90,7 @@ class StopwatchRun extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TabExample(),
+      home: RegisterPage(),
       );
   }
 }
