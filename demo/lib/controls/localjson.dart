@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,11 +45,26 @@ class _UserFormState extends State<UserForm> {
       'gender': gender,
       'agree': agree,
     });
-    
-    final pref = await SharedPreferences.getInstance();
+   final pref = await SharedPreferences.getInstance();
     await pref.setString(_key, jsonEncode(items));
     nameCtrl.clear();
     setState(() => { gender = 'M', agree = false });
+  }
+
+ 
+
+  Future<void> _delete(index) async{
+    items.removeAt(index);
+    final pref = await SharedPreferences.getInstance();
+    await pref.setString(_key, jsonEncode(items));
+    setState(() {});
+  }
+
+  Future<void> _update(index) async{
+    items.removeAt(index);
+    final pref = await SharedPreferences.getInstance();
+    await pref.setString(_key, jsonEncode(items));
+    setState(() {});
   }
 
   @override
@@ -68,6 +85,7 @@ class _UserFormState extends State<UserForm> {
             RadioListTile<String>(
               title: const Text('Male'),
               value: 'M',
+              // ignore: deprecated_member_use
               groupValue: gender,
               onChanged: (value) => setState(() => gender = value! ),
             ),
@@ -75,15 +93,43 @@ class _UserFormState extends State<UserForm> {
             RadioListTile<String>(
               title: const Text('Female'),
               value: 'F',
+              // ignore: deprecated_member_use
               groupValue: gender,
               onChanged: (value) => setState(() => gender = value! ),
             ),
             
-            CheckboxListTile(value: value, onChanged: onChanged),
-            ElevatedButton(),
-            SizedBox(height: 20),
-            Expanded(child: ListView.builder()
+            CheckboxListTile(
+              title: const Text('Agree'),
+              value: agree,
+              onChanged: (value) => setState(() => agree = value! ),
             ),
+            ElevatedButton(
+              onPressed: _save,
+              child: const Text('Save'),
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                final i1 = items[index];
+                return ListTile(
+                  title: Text('Name: ${i1['name']}'),
+                  subtitle: Text(
+                    'Gender: ${i1['gender']}, Agree: ${i1['agree']}'),
+                  
+                  trailing: IconButton(
+                    icon: const Icon(Icons.delete),
+                    onPressed: () => _delete(index),
+                  ),
+
+                  leading: IconButton(
+                    icon: const Icon(Icons.edit),
+                    onPressed: () => _update(index),
+                  ),
+                );
+              },
+            )),
         ],
         )));
   }
