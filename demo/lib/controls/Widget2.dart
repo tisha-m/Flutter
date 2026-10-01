@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:demo/controls/Widget1.dart';
 
 class UserForm extends StatefulWidget {
   const UserForm({super.key});
@@ -91,43 +92,7 @@ class _UserFormState extends State<UserForm> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            TextField(
-              controller: nameCtrl,
-              decoration: const InputDecoration(
-                labelText: 'Name',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            
-            RadioListTile<String>(
-              title: const Text('Male'),
-              value: 'M',
-              groupValue: gender,
-              onChanged: (value) => setState(() => gender = value! ),
-            ),
-
-            RadioListTile<String>(
-              title: const Text('Female'),
-              value: 'F',
-              groupValue: gender,
-              onChanged: (value) => setState(() => gender = value! ),
-            ),
-            
-            CheckboxListTile(
-              title: const Text('Agree'),
-              value: agree,
-              onChanged: (value) => setState(() => agree = value! ),
-            ),
-            ElevatedButton(
-              onPressed: _save,
-              child: const Text('Save'),
-            ),
-            ElevatedButton(
-              onPressed: _update,
-              child: const Text('Update'),
-            ),
-            const SizedBox(height: 20),
-            Expanded(
+            Expanded( 
               child: ListView.builder(
               itemCount: items.length,
               itemBuilder: (context, index) {
@@ -149,7 +114,7 @@ class _UserFormState extends State<UserForm> {
                 );
               },
             )),
-        ],
+          ]
         )));
   }
 }

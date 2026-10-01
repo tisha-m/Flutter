@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:demo/controls/Widget2.dart';
 
 class UserForm extends StatefulWidget {
   const UserForm({super.key});
@@ -127,28 +128,6 @@ class _UserFormState extends State<UserForm> {
               child: const Text('Update'),
             ),
             const SizedBox(height: 20),
-            Expanded(
-              child: ListView.builder(
-              itemCount: items.length,
-              itemBuilder: (context, index) {
-                final i1 = items[index];
-                return ListTile(
-                  title: Text('Name: ${i1['name']}'),
-                  subtitle: Text(
-                    'Gender: ${i1['gender']}, Agree: ${i1['agree']}'),
-                  
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () => _delete(index),
-                  ),
-
-                  leading: IconButton(
-                    icon: const Icon(Icons.edit),
-                    onPressed: () => _update_index(index),
-                  ),
-                );
-              },
-            )),
         ],
         )));
   }
